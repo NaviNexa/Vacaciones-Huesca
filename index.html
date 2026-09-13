@@ -309,39 +309,45 @@ body{padding-bottom:86px}
 .map-info-title{font-weight:850;font-size:16px}.map-info-day{font-size:12px;color:var(--muted);margin-top:2px}
 .map-info .buttons{margin-top:9px}
 
-.travel-bar{
-  margin-top:12px;
-  display:grid;
-  grid-template-columns:82px minmax(0,1fr) 82px;
-  gap:8px;
-  padding:10px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-}
-.travel-bar button,.travel-bar a{
+.stop.is-current{outline:3px solid color-mix(in srgb,var(--day) 55%, transparent);outline-offset:4px;border-radius:10px}
+
+.chalet-return-card{
+  padding:0;
+  overflow:hidden;
   border:0;
-  border-radius:11px;
-  min-height:52px;
-  padding:8px 7px;
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font:800 13px/1.15 system-ui,-apple-system,sans-serif;
+  background:transparent;
+  box-shadow:none;
+  margin-top:12px;
+  margin-bottom:12px;
 }
-.travel-prev{background:#eef2f5;color:#303840}
-.travel-next{background:#05c8f7;color:#fff}
-.travel-call{background:#eaf7ee;color:#1f6a39}
+.chalet-return-card .travel-home{
+  min-height:165px !important;
+}
+.chalet-return-card .travel-home-actions{
+  margin-top:auto;
+}
+
+.chalet-return-card{
+  padding:0;
+  overflow:hidden;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  margin-top:12px;
+  margin-bottom:12px;
+}
 .travel-home{
-  grid-column:1/-1;
-  min-height:108px !important;
+  width:100%;
+  min-height:165px !important;
   position:relative;
   overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch !important;
   justify-content:flex-start !important;
   text-align:left !important;
   padding:0 !important;
+  border-radius:16px;
   background:
     linear-gradient(90deg,rgba(6,20,32,.88) 0%,rgba(6,20,32,.56) 52%,rgba(6,20,32,.24) 100%),
     url('chalet.webp') center 53%/cover no-repeat;
@@ -354,7 +360,7 @@ body{padding-bottom:86px}
   position:absolute;
   inset:0;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
-  border-radius:11px;
+  border-radius:16px;
   pointer-events:none;
 }
 .travel-home-copy{
@@ -385,6 +391,7 @@ body{padding-bottom:86px}
   padding:0 14px 14px;
   width:100%;
   box-sizing:border-box;
+  margin-top:auto;
 }
 .travel-home-actions .mini-waze,
 .travel-home-actions .mini-maps{
@@ -394,17 +401,6 @@ body{padding-bottom:86px}
   padding:9px 10px;
   text-shadow:none;
 }
-.travel-home{
-  flex-direction:column;
-  align-items:stretch !important;
-}
-.travel-bar button:disabled{opacity:.45}
-.travel-next small{display:block;font-size:11px;font-weight:650;margin-top:3px;opacity:.92}
-@media(max-width:440px){
-  .travel-bar{grid-template-columns:72px minmax(0,1fr) 72px;padding:8px;gap:6px}
-  .travel-bar button,.travel-bar a{min-height:50px;font-size:12px}
-}
-.stop.is-current{outline:3px solid color-mix(in srgb,var(--day) 55%, transparent);outline-offset:4px;border-radius:10px}
 
 .stage-picker-card{
   border:2px solid #d9e7f2;
@@ -459,7 +455,7 @@ body{padding-bottom:86px}
   .travel-bar button,.travel-bar a{font-size:12px}
   .map-hotspot{width:18px;height:18px;font-size:8px;border-width:2px}
 }
-@media print{.travel-bar{display:none}.map-hotspot{display:none}}
+@media print{.map-hotspot{display:none}}
 
 </style>
 </head>
@@ -472,10 +468,23 @@ body{padding-bottom:86px}
       <h1>Escapada a Huesca</h1>
     </div>
     <p>Base en <b>Aragüés del Puerto</b> · Roncal · Irati · Valle de Tena.</p>
-    <span class="pill">Toca 📞 para llamar · 🚗 para Waze · 🌐 para web</span>
+    <span class="pill">Toca 📞 para llamar · ▲ para Waze · 🌐 para web</span>
       <div class="theme-row">
       <button class="theme-btn dark" data-theme="dark" type="button">🌙 Modo oscuro</button>
       <button class="theme-btn red" data-theme="red" type="button">🔴 Modo noche</button>
+    </div>
+  </section>
+
+  <section class="card chalet-return-card" aria-label="Volver al chalet">
+    <div class="travel-home" id="travelHome" aria-label="Volver a Alex Rural Chalet">
+      <span class="travel-home-copy">
+        <span class="travel-home-title">🏠 Volver al chalet</span>
+        <span class="travel-home-sub">Alex Rural Chalet · Aragüés del Puerto</span>
+      </span>
+      <span class="travel-home-actions">
+        <a class="mini-waze" href="https://www.waze.com/ul?q=Alex+Rural+Chalet%2C+Carretera+Arag%C3%BC%C3%A9s+a+Lizara%2C+Labati%2C+22730+Arag%C3%BC%C3%A9s+del+Puerto%2C+Huesca&navigate=yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;margin-right:4px"><path d="M12 2 4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>Waze</a>
+        <a class="mini-maps" href="https://www.google.com/maps/search/?api=1&query=Alex+Rural+Chalet%2C+Carretera+Arag%C3%BC%C3%A9s+a+Lizara%2C+Labati%2C+22730+Arag%C3%BC%C3%A9s+del+Puerto%2C+Huesca">📍 Google Maps</a>
+      </span>
     </div>
   </section>
 
@@ -491,7 +500,7 @@ body{padding-bottom:86px}
     <div class="stage-picker-head">
       <div>
         <div class="stage-picker-title">📍 Etapa actual</div>
-        <div class="stage-picker-sub">Selecciona un destino. «Navegar» cambiará a ese destino y la guía lo recordará en este móvil.</div>
+        <div class="stage-picker-sub">Selecciona la etapa en la que estás. La guía la resaltará y la recordará en este móvil.</div>
       </div>
     </div>
     <div class="stage-picker-controls">
@@ -504,21 +513,6 @@ body{padding-bottom:86px}
     <div class="stage-progress" id="stageProgress" aria-live="polite">
       <div class="stage-progress-line"><strong id="stageProgressText">Sin etapa seleccionada</strong><span id="stageProgressCount">—</span></div>
       <div class="stage-progress-track"><div class="stage-progress-fill" id="stageProgressFill"></div></div>
-    </div>
-    <div class="travel-bar" id="travelBar" aria-label="Controles de la etapa actual">
-      <button class="travel-prev" id="travelPrev" type="button" aria-label="Etapa anterior">←<br>Atrás</button>
-      <a class="travel-next" id="travelNext" href="#dia1"><span>🚗 Navegar<small id="travelNextName">Belabarce</small></span></a>
-      <a class="travel-call" id="travelCall" href="tel:+34747457579">☎️<br>Comer</a>
-      <div class="travel-home" id="travelHome" aria-label="Volver a Alex Rural Chalet">
-        <span class="travel-home-copy">
-          <span class="travel-home-title">🏠 Volver al chalet</span>
-          <span class="travel-home-sub">Alex Rural Chalet · Aragüés del Puerto</span>
-        </span>
-        <span class="travel-home-actions">
-          <a class="mini-waze" href="https://www.waze.com/ul?q=Alex+Rural+Chalet%2C+Carretera+Arag%C3%BC%C3%A9s+a+Lizara%2C+Labati%2C+22730+Arag%C3%BC%C3%A9s+del+Puerto%2C+Huesca&navigate=yes">🚗 Waze</a>
-          <a class="mini-maps" href="https://www.google.com/maps/search/?api=1&query=Alex+Rural+Chalet%2C+Carretera+Arag%C3%BC%C3%A9s+a+Lizara%2C+Labati%2C+22730+Arag%C3%BC%C3%A9s+del+Puerto%2C+Huesca">📍 Google Maps</a>
-        </span>
-      </div>
     </div>
   </section>
 
@@ -542,7 +536,7 @@ body{padding-bottom:86px}
     </div>
     <div class="map-info" id="mapInfo" aria-live="polite">
       <div class="map-info-head"><div><div class="map-info-title" id="mapInfoTitle"></div><div class="map-info-day" id="mapInfoDay"></div></div></div>
-      <div class="buttons"><a class="btn waze" id="mapInfoWaze" href="#">🚗 Waze</a><a class="btn maps" id="mapInfoMaps" href="#">📍 Maps</a></div>
+      <div class="buttons"><a class="btn waze" id="mapInfoWaze" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-4px;margin-right:4px"><path d="M12 2 4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>Waze</a><a class="btn maps" id="mapInfoMaps" href="#">📍 Maps</a></div>
     </div>
     <div class="caption">Azul = Roncal · naranja = Irati · verde = Valle de Tena.</div><div class="map-open-hint">Toca un punto para navegar · toca el mapa para verlo a pantalla completa</div>
   </section>
@@ -837,12 +831,8 @@ body{padding-bottom:86px}
   });
 
 
-  // Etapa actual: selección manual, persistente y sincronizada con la barra inferior.
+  // Etapa actual: selección manual y persistente.
   var stops = Array.prototype.slice.call(document.querySelectorAll('.day .stop'));
-  var prev = document.getElementById('travelPrev');
-  var next = document.getElementById('travelNext');
-  var nextName = document.getElementById('travelNextName');
-  var call = document.getElementById('travelCall');
   var picker = document.getElementById('stagePicker');
   var stageGo = document.getElementById('stageGo');
   var stageStatus = document.getElementById('stageStatus');
@@ -851,14 +841,10 @@ body{padding-bottom:86px}
   var stageProgressFill = document.getElementById('stageProgressFill');
   var current = -1;
   var STAGE_KEY = 'escapadaCurrentStageV3';
-  var calls = {dia1:'tel:+34747457579', dia2:'tel:+34646387407', dia3:'tel:+34974488038'};
   var dayLabels = {dia1:'Día 1 · Roncal', dia2:'Día 2 · Irati', dia3:'Día 3 · Tena'};
 
   function stopName(stop){
     var b = stop.querySelector('b'); return b ? b.textContent.trim() : 'parada';
-  }
-  function stopWaze(stop){
-    var a = stop.querySelector('a.mini-waze'); return a ? a.href : '#';
   }
   function visibleDay(stop){
     var day = stop && stop.closest('.day'); return day ? day.id : 'dia1';
@@ -903,12 +889,8 @@ body{padding-bottom:86px}
   function updateBar(idx, persist){
     current = Math.max(-1, Math.min(idx, stops.length - 1));
     stops.forEach(function(s,i){ s.classList.toggle('is-current', i === current); });
-    prev.disabled = current <= 0;
 
     if(current < 0){
-      next.href = stopWaze(stops[0]);
-      nextName.textContent = stopName(stops[0]);
-      call.href = calls.dia1;
       picker.value = '';
       stageStatus.textContent = 'Todavía no has seleccionado ninguna etapa.';
       updateProgress(-1);
@@ -917,9 +899,6 @@ body{padding-bottom:86px}
     }
 
     picker.value = String(current);
-    next.href = stopWaze(stops[current]);
-    nextName.textContent = stopName(stops[current]);
-    call.href = calls[visibleDay(stops[current])] || calls.dia1;
     stageStatus.innerHTML = '<strong>Estás en:</strong> ' + stageLabel(current);
     updateProgress(current);
     if(persist) localStorage.setItem(STAGE_KEY, String(current));
@@ -943,10 +922,6 @@ body{padding-bottom:86px}
     if(current >= 0) stops[current].scrollIntoView({behavior:'smooth', block:'center'});
   });
 
-  prev.addEventListener('click', function(){
-    if(current <= 0) return;
-    selectStage(current - 1, true);
-  });
 
   stops.forEach(function(stop, idx){
     stop.addEventListener('click', function(e){

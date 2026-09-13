@@ -1,4 +1,4 @@
-const CACHE = 'escapada-huesca-v7-destino-chalet';
+const CACHE = 'escapada-huesca-v9-banner-restaurado';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './chalet.webp'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
